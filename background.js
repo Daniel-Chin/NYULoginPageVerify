@@ -91,7 +91,7 @@ const onNewPage = (url) => {
 const garbageCollect = function (id) {
   chrome.storage.local.get('gc', (result) => {
     if (result.gc !== id) {
-      console.error('Very rare race condition: gc id mismatch');
+      console.warn('Very rare race condition: gc id mismatch');
       if (result.gc) {
         return;
       } else {
