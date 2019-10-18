@@ -2,7 +2,7 @@ You don't want to accidentally type your NYU password into an immitation web pag
 
 When the URL is "https://shibboleth.nyu.edu/", it shows a "Safe" pop up message. When the URL is similar but not identical, we suspect a spoof, thus showing a warning pop up. 
 
-Do: allow notification! 
+Do: allow notification!  
 Never: type in NYU password when you don't see a "Safe" pop up! 
 
 Browsing history is hashed before storing and is discarded within seconds. Check the source code if you don't believe me. 
