@@ -5,7 +5,7 @@ const STAY_MILLIS = 5000; // ok notification duration
 const IGNORE_DUPLICATE_MILLIS = 1000;  
 // if Chrome loads the same URL mulitple times within a short time, ignore duplicates
 const AVOID_RACE_CONDITION = 100; //  poor fix
-const SIMILARITY_THRESHOLD = 10;
+const SIMILARITY_THRESHOLD = 8;
 
 const editDistance = function (a, b, a_i, b_i, cache) {
   const lookup = (cache[a_i] || {})[b_i];
