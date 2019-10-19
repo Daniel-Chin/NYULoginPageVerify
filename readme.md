@@ -5,6 +5,6 @@ When the URL is "https://shibboleth.nyu.edu/", it shows a "Safe" pop up message.
 Do: allow notification!  
 Never: type in NYU password when you don't see a "Safe" pop up! 
 
-Browsing history is hashed before storing and is discarded within seconds. Check the source code if you don't believe me. 
+Browsing history is hashed before storing and is discarded within seconds. Check the source code if you don't believe me. https://github.com/Daniel-Chin/NYULoginPageVerify 
 
 This extension is not published by NYU authority. The author is Daniel Chin from NYU Shanghai.
