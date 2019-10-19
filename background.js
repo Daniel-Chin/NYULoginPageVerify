@@ -54,10 +54,12 @@ const hash = async function (url) {
   for (let i = s.length - 1; i >= 0; i--) {
     bufView[i] = s.charCodeAt(i);
   }
-  return (await crypto.subtle.digest('SHA-256', bufView)).toString();
+  const hashed = await crypto.subtle.digest('SHA-256', bufView);
+  return (new Uint16Array(hashed)).toString();
 };
 
 const onNewPage = (url) => {
+  console.log('Verifying', url);
   if (url.startsWith(TRUTH)) {
     chrome.notifications.create('', {
       type:     'basic',
@@ -103,6 +105,7 @@ const garbageCollect = function (id) {
       if (result.time) {
         if (new Date() - result.time > IGNORE_DUPLICATE_MILLIS) {
           chrome.storage.local.clear();
+          console.log('gc', id, 'finished');
         } else {
           setTimeout(garbageCollect.bind(null, id), IGNORE_DUPLICATE_MILLIS);
         }
@@ -134,24 +137,26 @@ const wakeGarbageCollector = function () {
   });
 };
 
-chrome.runtime.onInstalled.addListener(function() {
-  chrome.tabs.onUpdated.addListener((_, _2, { url }) => {
-    chrome.storage.local.set({time: + new Date()});
-    hash(url).then((hashed) => {
-      chrome.storage.local.get(hashed, (result) => {
-        if (! result[hashed]) {
-          const id = randId();
-          chrome.storage.local.set({[hashed]: id});
-          setTimeout(function (id, hashed) {
-            chrome.storage.local.get(hashed, (result) => {
-              if (result[hashed] === id) {
-                onNewPage(url);
-              }
-            });
-          }.bind(null, id, hashed), AVOID_RACE_CONDITION);
-        }
-        wakeGarbageCollector();
-      });
+chrome.tabs.onUpdated.addListener((_, _2, { url }) => {
+  chrome.storage.local.set({time: + new Date()});
+  hash(url).then((hashed) => {
+    chrome.storage.local.get(hashed, (result) => {
+      if (! result[hashed]) {
+        const id = randId();
+        chrome.storage.local.set({[hashed]: id});
+        setTimeout(function (id, hashed) {
+          chrome.storage.local.get(hashed, (result) => {
+            if (result[hashed] === id) {
+              onNewPage(url);
+            } else {
+              console.log('Ignoring', url);
+            }
+          });
+        }.bind(null, id, hashed), AVOID_RACE_CONDITION);
+      } else {
+        console.log('Ignoring', url);
+      }
+      wakeGarbageCollector();
     });
   });
 });
