@@ -59,8 +59,8 @@ const hash = async function (url) {
 };
 
 const onNewPage = (url) => {
-  console.log('Verifying', url);
   if (url.startsWith(TRUTH)) {
+    console.log('Verified', url);
     chrome.notifications.create('', {
       type:     'basic',
       iconUrl:  'images/ok.png',
@@ -76,6 +76,7 @@ const onNewPage = (url) => {
       );
     });
   } else if (isSimilar(url)) {
+    console.log('Danger', url);
     chrome.notifications.create('', {
       type:     'basic',
       iconUrl:  'images/warning.png',
@@ -87,6 +88,8 @@ const onNewPage = (url) => {
       priority: 2, 
       requireInteraction: true, 
     });
+  } else {
+    console.log('Not verified', url);
   }
 };
 
