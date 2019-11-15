@@ -2,7 +2,7 @@
 
 const TRUTH = 'https://shibboleth.nyu.edu/';
 const STAY_MILLIS = 5000; // ok notification duration
-const IGNORE_DUPLICATE_MILLIS = 8000;  
+const IGNORE_DUPLICATE_MILLIS = 5000;  
 // if Chrome loads the same URL mulitple times within a short time, ignore duplicates
 const SIMILARITY_THRESHOLD = 8;
 
