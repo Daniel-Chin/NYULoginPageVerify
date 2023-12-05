@@ -1,6 +1,6 @@
 {
   "name": "NYU Login Page Verify",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Made by NYU student Daniel Chin.\nShows popup on verified NYU login page. Shows warning on spoofers.",
   "permissions": ["tabs", "notifications"],
   "background": {
@@ -13,5 +13,5 @@
     "48": "images/icon_48.png",
     "128": "images/icon_128.png"
   }, 
-"manifest_version": 2
+"manifest_version": 3
 }
