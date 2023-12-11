@@ -12,3 +12,6 @@ Install it at: https://chrome.google.com/webstore/detail/nyu-login-page-verify/i
 Source Code at https://github.com/Daniel-Chin/NYULoginPageVerify  
 
 This extension is not published by NYU authority. The author is Daniel Chin from NYU Shanghai.
+
+## Privacy policy
+I don't upload anything out of your machine. Even on your machine, I only keep two variables (just to know when it pushed the last notification).  
